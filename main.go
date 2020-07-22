@@ -22,6 +22,7 @@ func main() {
 	// Start the web server on port 8080
 	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed))
 }
+
 func newApp(db *gorm.DB) *iris.Application {
 	// Initialize a new Iris App
 	app := iris.New()
