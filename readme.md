@@ -3,6 +3,8 @@ novice project
 * `You need to configure the database yourself`
 ### struct
 <pre>
+|conf
+|--config.yaml //iris config.yaml
 |database
 |--mysql.go  //open gorm-sql
 |model
