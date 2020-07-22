@@ -24,7 +24,7 @@ func main() {
 		iris.WithoutServerError(iris.ErrServerClosed),
 		//Iris-config.yaml
 		iris.WithConfiguration(
-			iris.YAML("./conf/config.yaml"), //reload... cfg
+			iris.YAML("./conf/config.yaml"), //loading config.yaml
 		))
 }
 
