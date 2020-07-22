@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"iris-gorm/model"
 )
 
 func Mydb() *gorm.DB {
@@ -14,12 +13,15 @@ func Mydb() *gorm.DB {
 	if err != nil {
 		fmt.Printf("[Error] open db error:%v", err)
 	}
-	//If mysql-table doesn't exist. => Create sql table
-	if !db.HasTable(&model.Movie{}) {
-		if err := db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&model.Movie{}).Error; err != nil {
-			panic(err)
+	/*
+		//If mysql-table doesn't exist. => Create sql table
+		if !db.HasTable(&model.Movie{}) {
+
+			if err := db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&model.Movie{}).Error; err != nil {
+				panic(err)
+			}
 		}
-	}
-	//defer db.Close()
+		defer db.Close()
+	*/
 	return db
 }
