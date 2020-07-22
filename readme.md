@@ -1,5 +1,6 @@
 # Iris-Gorm-api novice Project
-
+novice project   
+* `You need to configure the database yourself`
 ### struct
 <pre>
 |database
