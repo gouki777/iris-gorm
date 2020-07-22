@@ -2,15 +2,20 @@ package main
 
 import (
 	"fmt"
-	"iris-gorm/database"
-	"iris-gorm/model"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/kataras/iris/v12"
+	"iris-gorm/database"
+	"iris-gorm/model"
 )
 
 func main() {
 	db := database.Mydb()
+	//defer close db
+	defer func() {
+		_ = db.Close()
+	}()
+
 	// Run the function to create the new Iris App
 	app := newApp(db)
 
@@ -37,7 +42,8 @@ func newApp(db *gorm.DB) *iris.Application {
 	var movices []model.Movie
 	// Endpoint to perform the database request
 	app.Get("/movie", func(ctx iris.Context) {
-		db.Order("Id desc").Limit(5).Find(&movices)
+		//gorm set sql
+		db.Order("Id desc").Limit(1).Find(&movices)
 		_, _ = ctx.JSON(movices)
 	})
 	return app
